@@ -17,8 +17,11 @@ module.exports = {
     async consultarPorLetra(req, res){
         const palavrasDesejadas = await Palavra.findAll({
             where: {
-                letra_inicial: req.body
-            }
+                letra_inicial: req.body.letra_inicial
+                               
+            },
+            attributes: ['palavra', 'significado', 'genero', 'origem', 'endereco_gif', 'exemplo_portugues', 'exemplo_libras'],
+            
         })
 
         if(palavrasDesejadas.length == 0)
