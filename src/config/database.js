@@ -11,7 +11,7 @@ module.exports = {
     password: 'cotucaeasysigndatabase',
     database: 'EasySign',
     define: {
-        timestamps: true,
+        timestamps: false,
         underscored: true,
         freezeTableName: false,
     }

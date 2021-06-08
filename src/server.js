@@ -1,10 +1,12 @@
 const express = require('express');
-const routes = require('./routes');
+const palavra = require('./routes/PalavraRotas');
+
+require('./database');
 
 const app = express();
 
 app.use(express.json());
-app.use(routes);
+app.use(palavra);
 
 app.listen(3333, function () {
     console.log('API ligada!');
