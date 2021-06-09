@@ -15,9 +15,18 @@ module.exports = {
     },
 
     async consultarPorLetra(req, res){
+        letra  = req.body.letra_inicial.toLowerCase();
+        letras_alfabeto = ['a','b','c','d','e','f','g','h','i','j','k','l','m',
+        'n','o','p','q','r','s','t','u','v','w','x','y','z'];
+
+        if(!letra in letras_alfabeto)
+            return res
+                .status(404)
+                .json({error: 'Insira uma letra valida!'});
+
         const palavrasDesejadas = await Palavra.findAll({
             where: {
-                letra_inicial: req.body.letra_inicial
+                letra_inicial: letra
                                
             },
             attributes: ['palavra', 'significado', 'genero', 'origem', 'endereco_gif', 'exemplo_portugues', 'exemplo_libras'],
