@@ -4,14 +4,14 @@ module.exports = {
     async consultarPorID(req, res){
         const { id } = req.params;
 
-        const palavraDesejada = await Palavra.findByPk(id);
+        const palavra_desejada = await Palavra.findByPk(id);
 
-        if(!palavraDesejada)
+        if(!palavra_desejada)
             return res
                 .status(404)
                 .json({error: 'Palavra não encontrada.'});
 
-        return res.json(palavraDesejada)
+        return res.json(palavra_desejada)
     },
 
     async consultarPorLetra(req, res){
@@ -19,26 +19,25 @@ module.exports = {
         letras_alfabeto = ['a','b','c','d','e','f','g','h','i','j','k','l','m',
         'n','o','p','q','r','s','t','u','v','w','x','y','z'];
 
-        if(!letra in letras_alfabeto)
+        if(!letras_alfabeto.includes(letra))
             return res
                 .status(404)
                 .json({error: 'Insira uma letra valida!'});
 
-        const palavrasDesejadas = await Palavra.findAll({
+        const palavras_desejadas = await Palavra.findAll({
             where: {
-                letra_inicial: letra
-                               
+                letra_inicial: letra                               
             },
             attributes: ['palavra', 'significado', 'genero', 'origem', 'endereco_gif', 'exemplo_portugues', 'exemplo_libras'],
             
-        })
+        });
 
-        if(palavrasDesejadas.length == 0)
+        if(palavras_desejadas.length == 0)
             return res
                 .status(404)
                 .json({error: 'Nenhuma palavra foi encontrada.'});
 
-        return res.json(palavrasDesejadas)
+        return res.json(palavras_desejadas)
     },
 
     async inserir(req, res){
