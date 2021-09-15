@@ -11,6 +11,8 @@ module.exports = {
                 .status(404)
                 .json({error: 'Palavra não encontrada.'});
 
+        palavra_desejada.endereco_gif = "http://www.acessibilidadebrasil.org.br/libras_3/" + palavra_desejada.endereco_gif;
+
         return res.json(palavra_desejada)
     },
 
@@ -26,16 +28,18 @@ module.exports = {
 
         const palavras_desejadas = await Palavra.findAll({
             where: {
-                letra_inicial: letra                               
+                letra_inicial: letra
             },
             attributes: ['palavra', 'significado', 'genero', 'origem', 'endereco_gif', 'exemplo_portugues', 'exemplo_libras'],
-            
+
         });
 
         if(palavras_desejadas.length == 0)
             return res
                 .status(404)
                 .json({error: 'Nenhuma palavra foi encontrada.'});
+
+        palavra_desejada.endereco_gif = "http://www.acessibilidadebrasil.org.br/libras_3/" + palavra_desejada.endereco_gif;
 
         return res.json(palavras_desejadas)
     },
@@ -50,7 +54,7 @@ module.exports = {
             endereco_gif,
             exemplo_portugues,
             exemplo_libras
-        } = await Palavra.create(req.body);   
+        } = await Palavra.create(req.body);
 
         return res.json(
             letra_inicial,
