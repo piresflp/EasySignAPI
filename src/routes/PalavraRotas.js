@@ -4,6 +4,6 @@ const PalavraController = require('../controllers/PalavraController');
 const routes = express.Router();
 
 routes.get('/palavras/:id', PalavraController.consultarPorID);
-routes.get('/palavras', PalavraController.consultarPorLetra);
+routes.post('/palavras', PalavraController.consultarPorLetra);
 
 module.exports = routes;
