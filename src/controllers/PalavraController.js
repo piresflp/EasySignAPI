@@ -11,8 +11,6 @@ module.exports = {
                 .status(404)
                 .json({error: 'Palavra não encontrada.'});
 
-        palavra_desejada.endereco_gif = "http://www.acessibilidadebrasil.org.br/libras_3/" + palavra_desejada.endereco_gif;
-
         return res.json(palavra_desejada)
     },
 
@@ -40,7 +38,6 @@ module.exports = {
                 .status(404)
                 .json({error: 'Nenhuma palavra foi encontrada.'});
 
-        palavras_desejadas.endereco_gif = "http://www.acessibilidadebrasil.org.br/libras_3/" + palavras_desejadas.endereco_gif;
 
         return res.json(palavras_desejadas)
     },
